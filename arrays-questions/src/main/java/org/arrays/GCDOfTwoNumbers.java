@@ -1,4 +1,4 @@
-package org.examples.arrays;
+package org.arrays;
 
 public class GCDOfTwoNumbers {
     public static void main(String args[]) {
