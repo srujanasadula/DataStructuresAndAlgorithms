@@ -1,4 +1,4 @@
-package org.examples;
+package org.examples.strings;
 
 public class CheckStringHasUniqueChars {
     public static void main(String[] args) {

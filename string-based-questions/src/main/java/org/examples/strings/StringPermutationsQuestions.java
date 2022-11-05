@@ -1,13 +1,17 @@
-package org.examples;
+package org.examples.strings;
 
 import java.util.Arrays;
 
 public class StringPermutationsQuestions {
     public static void main(String args[]) {
-        String input1 = "Bsas";
-        String input2 = "sas    BS";
-        System.out.println(ifStringsArePermutations(input1, input2));
-        System.out.println(ifStringsArePermutations2(input1, input2));
+//        String input1 = "Bsas";
+//        String input2 = "sas    BS";
+//        System.out.println(ifStringsArePermutations(input1, input2));
+//        System.out.println(ifStringsArePermutations2(input1, input2));
+        String input3 = "Bsasa";
+        String input4 = "sasss";
+        System.out.println(ifStringPermutationIsPalindrome(input3));
+        System.out.println(ifStringPermutationIsPalindrome(input4));
     }
 
     //This method checks if the given string has a permutation that is a palindrome
@@ -17,11 +21,16 @@ public class StringPermutationsQuestions {
         for(char c: input.toCharArray()) {
             charArray[c]++;
         }
-        for(int c: charArray[])
-        return false;
+        //Check if at least one character whose character count is odd number
+        int oddcount = 0 ;
+        for(char c: input.toCharArray()) {
+            if((charArray[c])%2 == 1 && (oddcount++)>=1)
+                return false;
+        }
+        return true;
     }
 
-    // This method checks if one string is a permutation of other string
+    // This method checks if one string is a permutation of an other string
     public static boolean ifStringsArePermutations(String input1, String input2) {
         input1 = cleanUpString(input1);
         input2 = cleanUpString(input2);
