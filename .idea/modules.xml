@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DataStructuresAndAlgorithms.iml" filepath="$PROJECT_DIR$/.idea/DataStructuresAndAlgorithms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/collection-ds-implementations/collection-ds-implementations.iml" filepath="$PROJECT_DIR$/collection-ds-implementations/collection-ds-implementations.iml" />
     </modules>
   </component>
 </project>
