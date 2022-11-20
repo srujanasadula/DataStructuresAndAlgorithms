@@ -1,28 +1,31 @@
 package org.examples.strings;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class MinWindowMatchingSubString {
     public static void main(String args[]) {
             // keep this function call here
             //Scanner s = new Scanner(System.in);
-            System.out.print(MinWindowSubstring(new String[]{"ahffaksfajeeubsne", "jefaa"}));
+            System.out.print(MinWindowSubstring(new String[]{"ahffksfajubsn", "jefaa"}));
 
     }
     public static String MinWindowSubstring(String[] strArr) {
         // code goes here
         String largerStr = strArr[0];
         String smallStr = strArr[1] ;
-        //Set<Character> charSet = new HashSet<>();
+        HashMap<Character, Integer> charSet = new HashMap<>();
         char[] smallStrArray= smallStr.toCharArray();
-        //for(char ch: array) {
-        //  charSet.add(ch);
-        //}
-        System.out.println(smallStrArray);
+        for(char ch: smallStrArray) {
+            Integer orDefault = charSet.getOrDefault(ch, 0);
+            orDefault++;
+            charSet.put(ch, orDefault);
+        }
+        System.out.println(charSet);
         int minWindow = smallStr.length();
         System.out.println(minWindow);
         int smallestLen = largerStr.length();
-        String foundString = largerStr;
+        String foundString = null;
         int i=0;
         int j=minWindow;
 
@@ -31,8 +34,14 @@ public class MinWindowMatchingSubString {
             {
                 String subStr = largerStr.substring(i,j);
                 boolean found = true;
+                HashMap<Character, Integer> subStrCharSet = new HashMap<>();
+                for(char ch: subStr.toCharArray()) {
+                    Integer orDefault = subStrCharSet.getOrDefault(ch, 0);
+                    orDefault++;
+                    subStrCharSet.put(ch, orDefault);
+                }
                 for(char ch: smallStrArray) {
-                    if(!subStr.contains(ch+"")){
+                    if(!subStr.contains(ch+"") || subStrCharSet.get(ch) < charSet.get(ch)){
                         found = false;
                         break;
                     }
