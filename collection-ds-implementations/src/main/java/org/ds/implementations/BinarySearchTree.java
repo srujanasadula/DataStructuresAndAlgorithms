@@ -1,6 +1,6 @@
 package main.java.org.ds.implementations;
 
-import java.util.Comparator;
+import java.util.*;
 
 public class BinarySearchTree<V> {
     Comparator<? super V> comparator;
@@ -78,12 +78,85 @@ public class BinarySearchTree<V> {
             }
         });
         binarySearchTree.addNode(4);
-        binarySearchTree.addNode(5);
+        binarySearchTree.addNode(6);
         binarySearchTree.addNode(1);
         binarySearchTree.addNode(3);
+        binarySearchTree.addNode(7);
         binarySearchTree.addNode(2);
-        binarySearchTree.addNode(2);
-        binarySearchTree.printTree();
+        binarySearchTree.addNode(5);
+        System.out.println("=====InOrder=======");
+        binarySearchTree.printInOrderWithLooping(binarySearchTree.root);
+        System.out.println("=====PostOrder=======");
+        binarySearchTree.printPostOrder(binarySearchTree.root);
+        System.out.println("=====PreOrder=======");
+        binarySearchTree.printPreOrderWithLooping(binarySearchTree.root);
+        System.out.println("====LevelOrder=======");
+        binarySearchTree.printLevelOrderTraversal(binarySearchTree.root);
         System.out.println(binarySearchTree.searchNode(2) != null);
+    }
+
+    private void printPreOrder(BinaryTreeNodeEntry<V> node) {
+        if (node != null) {
+            System.out.println(node.value + "->");
+            printPreOrder(node.left);
+            printPreOrder(node.right);
+        }
+    }
+
+    private void printPreOrderWithLooping(BinaryTreeNodeEntry<V> node) {
+        Stack<BinaryTreeNodeEntry<V>> stack = new Stack<>();
+        stack.push(node);
+        while (!stack.empty()) {
+            BinaryTreeNodeEntry<V> peeked = stack.pop();
+            System.out.println(peeked.value + "->");
+            if (peeked.right != null) stack.push(peeked.right);
+            if (peeked.left != null) stack.push(peeked.left);
+        }
+    }
+
+    private void printInOrderWithLooping(BinaryTreeNodeEntry<V> root) {
+        Stack<BinaryTreeNodeEntry<V>> stack = new Stack<>();
+        while (true) {
+            BinaryTreeNodeEntry<V> peeked = stack.pop();
+            if (peeked.right != null) stack.push(peeked.right);
+            if (peeked.left != null) stack.push(peeked.left);
+            BinaryTreeNodeEntry<V> popped = stack.pop();
+            System.out.println(popped.value);
+            root = popped.right;
+        }
+    }
+
+    private void printPostOrderWithLooping(BinaryTreeNodeEntry<V> root) {
+        Stack<BinaryTreeNodeEntry<V>> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            if (stack.isEmpty()) break;
+            BinaryTreeNodeEntry<V> popped = stack.pop();
+            System.out.println(popped.value);
+            root = popped.right;
+        }
+    }
+
+    private void printLevelOrderTraversal(BinaryTreeNodeEntry<V> node) {
+        Queue<BinaryTreeNodeEntry<V>> queue = new ArrayDeque<>();
+        queue.add(node);
+        while (!queue.isEmpty()) {
+            BinaryTreeNodeEntry<V> polled = queue.poll();
+            System.out.println(polled.value);
+            if (polled.left != null) queue.add(polled.left);
+            if (polled.right != null) queue.add(polled.right);
+        }
+    }
+
+    private void printPostOrder(BinaryTreeNodeEntry<V> node) {
+        if (node != null) {
+            printPostOrder(node.left);
+            printPostOrder(node.right);
+            System.out.println(node.value + "->");
+        }
     }
 }
