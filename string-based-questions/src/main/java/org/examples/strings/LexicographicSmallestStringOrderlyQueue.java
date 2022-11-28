@@ -5,13 +5,13 @@ import java.util.Collections;
 
 /*
 You are given a string s and an integer k. You can choose any one of the first k letters of s and append it at the end of the string.
-Return the lexicographically smallest string you could have after applying the mentioned step any number of moves.
+Return lexicographically the smallest string you could have after applying the mentioned step any number of moves.
  */
 public class LexicographicSmallestStringOrderlyQueue {
     public static void main(String args[]) {
         int k = 9;
         String inputStr = "afajfhasf";
-        System.out.println("The lecograhic smallest string is : " + getLexicographicSmallestString(inputStr, k));
+        System.out.println("The lexicographic smallest string is : " + getLexicographicSmallestString(inputStr, k));
 
     }
 

@@ -1,6 +1,6 @@
 package org.examples.strings;
 
-public class StringReplacementsQuestions {
+public class SpaceUrlEncode {
     public static void main(String[] args) {
         substituteSpaces("my name is John         ", 15);
     }
