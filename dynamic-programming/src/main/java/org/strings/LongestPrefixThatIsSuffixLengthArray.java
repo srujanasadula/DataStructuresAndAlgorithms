@@ -1,4 +1,4 @@
-package org.examples.strings;
+package org.strings;
 
 public class LongestPrefixThatIsSuffixLengthArray {
     public static void main(String args[]) {
