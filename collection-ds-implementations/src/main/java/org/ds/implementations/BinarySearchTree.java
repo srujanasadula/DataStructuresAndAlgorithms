@@ -1,4 +1,4 @@
-package main.java.org.ds.implementations;
+package org.ds.implementations;
 
 import java.util.*;
 

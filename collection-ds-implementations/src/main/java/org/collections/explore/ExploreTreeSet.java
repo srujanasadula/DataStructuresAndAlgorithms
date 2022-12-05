@@ -1,4 +1,4 @@
-package main.java.org.collections.explore;
+package org.collections.explore;
 
 import java.util.Comparator;
 import java.util.SortedSet;

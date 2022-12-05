@@ -1,4 +1,4 @@
-package main.java.org.ds.implementations;
+package org.ds.implementations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class ComputeBinaryTreeFromOrderTraversals {
         List<Integer> rightSubTreePostOrder = new ArrayList<>();
         AtomicBoolean startRight = new AtomicBoolean(false);
         inOrderTraversal.forEach(i -> {
-            if (i == rootValue) {
+            if (i.equals(rootValue)) {
                 startRight.set(true);
             } else {
                 if (startRight.get()) {
@@ -33,7 +33,7 @@ public class ComputeBinaryTreeFromOrderTraversals {
             }
         });
         postOrderTraversal.forEach(i -> {
-            if (i != rootValue) {
+            if (!i.equals(rootValue)) {
                 if (leftSubTreeInOrder.contains(i)) {
                     leftSubTreePostOrder.add(i);
                 } else {
@@ -47,7 +47,7 @@ public class ComputeBinaryTreeFromOrderTraversals {
         return rootNode;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         List<Integer> postOrderTraversal = Arrays.asList(2, 3, 1, 5, 7, 6, 4);
         List<Integer> inOrderTraversal = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
         List<Integer> preOrderTraversal = Arrays.asList(4, 1, 3, 2, 6, 5, 7);
@@ -70,8 +70,7 @@ public class ComputeBinaryTreeFromOrderTraversals {
 
     private static BinaryTreeNodeEntry<Integer> findTreeFromPreAndIn(List<Integer> inOrderTraversal, List<Integer> preOrderTraversal) {
         if (inOrderTraversal.size() == 1) {
-            BinaryTreeNodeEntry<Integer> rootNode = new BinaryTreeNodeEntry<>(preOrderTraversal.get(0));
-            return rootNode;
+            return new BinaryTreeNodeEntry<>(preOrderTraversal.get(0));
         }
         if (inOrderTraversal.size() == 0) return null;
         Integer rootValue = preOrderTraversal.get(0);
@@ -81,7 +80,7 @@ public class ComputeBinaryTreeFromOrderTraversals {
         List<Integer> rightSubTreePreOrder = new ArrayList<>();
         AtomicBoolean startRight = new AtomicBoolean(false);
         inOrderTraversal.forEach(i -> {
-            if (i == rootValue) {
+            if (i.equals(rootValue)) {
                 startRight.set(true);
             } else {
                 if (startRight.get()) {
@@ -92,7 +91,7 @@ public class ComputeBinaryTreeFromOrderTraversals {
             }
         });
         preOrderTraversal.forEach(i -> {
-            if (i != rootValue) {
+            if (!i.equals(rootValue)) {
                 if (leftSubTreeInOrder.contains(i)) {
                     leftSubTreePreOrder.add(i);
                 } else {

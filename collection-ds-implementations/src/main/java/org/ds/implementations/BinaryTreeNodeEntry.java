@@ -1,4 +1,4 @@
-package main.java.org.ds.implementations;
+package org.ds.implementations;
 
 public final class BinaryTreeNodeEntry<V> {
     public BinaryTreeNodeEntry<V> left;

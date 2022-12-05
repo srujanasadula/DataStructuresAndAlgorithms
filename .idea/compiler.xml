@@ -7,8 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="string-based-questions" />
+        <module name="collection-ds-implementations" />
+        <module name="dynamic-programming" />
         <module name="arrays-questions" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="matices" target="19" />
+    </bytecodeTargetLevel>
   </component>
 </project>
