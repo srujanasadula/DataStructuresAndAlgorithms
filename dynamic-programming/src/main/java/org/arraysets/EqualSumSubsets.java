@@ -11,7 +11,23 @@ public class EqualSumSubsets {
         int arr[] = {3, 1, 5, 9, 12};
         int n = arr.length;
 
-        if (findPartition(arr, n) == true)
+        if (findPartition(arr, n))
+            System.out.println("Can be divided into two subsets of equal sum");
+        else
+            System.out.println(
+                    "Can not be divided into two subsets of equal sum");
+
+        int arr1[] = { 3, 1, 1, 2, 2, 1 };
+         n = arr1.length;
+        if (findPartitionByTabularApproach(arr1, n))
+            System.out.println("Can be divided into two subsets of equal sum");
+        else
+            System.out.println(
+                    "Can not be divided into two subsets of equal sum");
+
+        int arr2[] =  { 3, 1, 5, 9, 14 };
+        n = arr2.length;
+        if (findPartitionByTabularApproach(arr2, n))
             System.out.println("Can be divided into two subsets of equal sum");
         else
             System.out.println(
@@ -27,7 +43,7 @@ public class EqualSumSubsets {
             return false;
         }
         //return containsSubsetsWithSum(arr, n, sum / 2);
-        int dp[][] = new int[sum+1][n+1];
+        int dp[][] = new int[sum + 1][n + 1];
         for (int row[] : dp)
             Arrays.fill(row, -1);
 
@@ -94,10 +110,37 @@ public class EqualSumSubsets {
          */
         if (containsSubsetsWithSumUsingMemoization(arr, n - 1, sum, dp) != 0
                 || containsSubsetsWithSumUsingMemoization(arr, n - 1, sum - arr[n - 1], dp) != 0) {
-            dp[sum][n] = 1;
+            return dp[sum][n] = 1;
         }
         return dp[sum][n] = 0;
 
+    }
+
+    //Using dynamic programming tabular bottom up approach
+    public static boolean findPartitionByTabularApproach(int arr[], int n) {
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum = sum + arr[i];
+        }
+        if (sum % 2 != 0) {
+            return false;
+        }
+        boolean[][] dp = new boolean[sum / 2 + 1][n + 1];
+        for (int s = 0; s <= sum / 2; s++) {
+            dp[s][0] = false;
+        }
+        for (int k = 0; k <=n ; k++) {
+            dp[0][k] = true;
+        }
+        for(int s=1;s<=sum/2;s++) {
+            for(int k=1;k<=n;k++){
+                dp[s][k] = dp[s][k-1];
+                if(arr[k-1] <=s){
+                    dp[s][k] = dp[s][k-1] || dp[s-arr[k-1]][k-1];
+                }
+            }
+        }
+        return dp[sum/2][n];
     }
 
 }
