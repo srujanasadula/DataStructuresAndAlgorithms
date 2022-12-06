@@ -135,7 +135,7 @@ public class EqualSumSubsets {
         for(int s=1;s<=sum/2;s++) {
             for(int k=1;k<=n;k++){
                 dp[s][k] = dp[s][k-1];
-                if(arr[k-1] <=s){
+                if(arr[k-1] <= s){
                     dp[s][k] = dp[s][k-1] || dp[s-arr[k-1]][k-1];
                 }
             }
